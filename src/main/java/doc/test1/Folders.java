@@ -34,13 +34,9 @@ public class Folders {
                     if (parts.containsKey(name)) {
                         throw new RuntimeException(String.format("Файл с таким именем уже существует: %s", file));
                     }
-                    try {
-                        List<String> lines = Files.readAllLines(file);
-                        Part part = new Part(name, file, lines);
-                        parts.put(part.name, part);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    List<String> lines = Files.readAllLines(file);
+                    Part part = new Part(name, file, lines);
+                    parts.put(part.name, part);
                     return FileVisitResult.CONTINUE;
                 }
             });
